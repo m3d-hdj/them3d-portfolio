@@ -1,17 +1,23 @@
 # TheM3d — Portfolio
 
-**Video Editor & Graphic Designer** — [live site](https://m3d-hdj.github.io/them3d-portfolio/)
-
-Static portfolio (HTML/CSS/JS) + [Supabase](https://supabase.com) backend.
-
-## Pages
-- `index.html` — public portfolio (loads projects from Supabase, demo fallback)
-- `admin.html` — private admin panel: login, add/edit/delete projects, upload thumbnails & clips (≤50MB)
+**Video Editor & Graphic Designer** — live at [m3d-hdj.github.io/them3d-portfolio](https://m3d-hdj.github.io/them3d-portfolio/)
 
 ## Stack
-- Supabase project: `them3d-portfolio` (eu-west-3) — Postgres + Auth + Storage
-- Long videos: YouTube/Vimeo embeds · Short clips: Supabase Storage (`media` bucket)
-- Hosting: GitHub Pages via Actions workflow (`.github/workflows/deploy-pages.yml`)
+- **React 18 + TypeScript + Vite** — component architecture, strict types
+- **Tailwind CSS** — brand design system (royal blue #0045DF / navy gradients / Archivo Black + Poppins)
+- **Framer Motion** — scroll reveals, lightbox, drag-to-reorder
+- **Supabase** — Postgres + Auth + Storage (project `chqdunxchpqiulywfcnl`, eu-west-3)
 
-## Deploy
-Every push to `main` auto-deploys. The publishable key in `config.js` is safe to be public — writes are protected by Row Level Security.
+## Structure
+- `/` — public portfolio (projects, filters, video lightbox, contact form)
+- `/admin` — CMS: projects (drag reorder, uploads ≤50MB), messages inbox, site settings, testimonials
+- `docs/` — built output, served by GitHub Pages (Settings → Pages → main /docs)
+
+## Development
+```bash
+npm install
+npm run dev     # local dev server
+npm run build   # type-check + build to docs/
+```
+
+Every push to `main` with a rebuilt `docs/` updates the live site. The publishable Supabase key in the client is safe — data is protected by Row Level Security.
