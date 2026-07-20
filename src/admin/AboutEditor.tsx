@@ -7,6 +7,7 @@ import type { Notify } from '../pages/Admin'
 export default function AboutEditor({ notify }: { notify: Notify }) {
   const [about, setAbout] = useState<AboutSettings>(FALLBACK_ABOUT)
   const [journey, setJourney] = useState<JourneyItem[]>(FALLBACK_JOURNEY)
+  const [pillsText, setPillsText] = useState(FALLBACK_ABOUT.pills.join(', '))
   const [busy, setBusy] = useState(false)
   const imgRef = useRef<HTMLInputElement>(null)
   const [imgPreview, setImgPreview] = useState<string | null>(null)
@@ -18,7 +19,11 @@ export default function AboutEditor({ notify }: { notify: Notify }) {
       .then(({ data, error }) => {
         if (error || !data) return
         for (const row of data) {
-          if (row.key === 'about') setAbout((p) => ({ ...p, ...(row.value as object) }) as AboutSettings)
+          if (row.key === 'about') {
+            const v = row.value as Partial<AboutSettings>
+            setAbout((p) => ({ ...p, ...v }) as AboutSettings)
+            if (Array.isArray(v.pills)) setPillsText(v.pills.join(', '))
+          }
           if (row.key === 'journey' && Array.isArray(row.value)) setJourney(row.value as JourneyItem[])
         }
       })
@@ -38,7 +43,7 @@ export default function AboutEditor({ notify }: { notify: Notify }) {
   const save = async () => {
     setBusy(true)
     try {
-      const next = { ...about }
+      const next = { ...about, pills: pillsText.split(',').map((s) => s.trim()).filter(Boolean) }
       const f = imgRef.current?.files?.[0]
       if (f) {
         if (f.size > MAX_UPLOAD_BYTES) throw new Error('Image is too large (max 50MB).')
@@ -99,10 +104,8 @@ export default function AboutEditor({ notify }: { notify: Notify }) {
             <input
               className="field"
               placeholder="Premiere Pro, After Effects, ..."
-              value={about.pills.join(', ')}
-              onChange={(e) =>
-                setAbout({ ...about, pills: e.target.value.split(',').map((s) => s.trim()).filter(Boolean) })
-              }
+              value={pillsText}
+              onChange={(e) => setPillsText(e.target.value)}
             />
             <p className="mt-1.5 text-[0.78rem] text-muted">
               The "✦ Open for projects" pill follows the availability toggle in Settings.
