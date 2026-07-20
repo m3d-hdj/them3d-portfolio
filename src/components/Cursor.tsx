@@ -37,10 +37,10 @@ export default function Cursor() {
       hovering = Boolean((e.target as Element | null)?.closest?.(INTERACTIVE))
     }
     const onDown = () => {
-      dot.style.scale = '0.55'
+      dot.classList.add('is-pressed')
     }
     const onUp = () => {
-      dot.style.scale = '1'
+      dot.classList.remove('is-pressed')
     }
     const onLeave = () => {
       dot.style.opacity = '0'
