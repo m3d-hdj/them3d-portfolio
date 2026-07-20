@@ -11,8 +11,10 @@ import Skills from '../components/Skills'
 import Contact from '../components/Contact'
 import { sb, type SiteSettings } from '../lib/supabase'
 import { FALLBACK_SETTINGS } from '../lib/content'
+import { useSmoothScroll } from '../lib/smoothScroll'
 
 export default function Home() {
+  useSmoothScroll()
   const [settings, setSettings] = useState<SiteSettings>(FALLBACK_SETTINGS)
 
   useEffect(() => {
