@@ -137,31 +137,33 @@ export default function AboutEditor({ notify }: { notify: Notify }) {
         <h2 className="font-disp text-xl uppercase">Journey timeline</h2>
         <p className="text-[0.88rem] text-muted">Your career milestones, top to bottom.</p>
         {journey.map((r, i) => (
-          <div key={i} className="mb-3 grid grid-cols-[70px_1fr] gap-2.5 rounded-lg border border-line bg-[#FAFBFF] p-3 sm:grid-cols-[80px_1fr_1.4fr_auto]">
-            <input className="field" placeholder="Year" value={r.year} onChange={(e) => setRow(i, { year: e.target.value })} />
-            <input className="field" placeholder="Title" value={r.title} onChange={(e) => setRow(i, { title: e.target.value })} />
-            <input
-              className="field max-sm:col-span-2"
+          <div key={i} className="mb-3 rounded-lg border border-line bg-[#FAFBFF] p-3">
+            <div className="grid grid-cols-[80px_1fr_auto] gap-2.5 max-sm:grid-cols-[70px_1fr]">
+              <input className="field" placeholder="Year" value={r.year} onChange={(e) => setRow(i, { year: e.target.value })} />
+              <input className="field" placeholder="Title" value={r.title} onChange={(e) => setRow(i, { title: e.target.value })} />
+              <div className="flex gap-1.5 max-sm:col-span-2 max-sm:justify-end">
+                <button type="button" className="btn-ghost btn-sm" onClick={() => moveRow(i, -1)} aria-label="Move up">
+                  ↑
+                </button>
+                <button type="button" className="btn-ghost btn-sm" onClick={() => moveRow(i, 1)} aria-label="Move down">
+                  ↓
+                </button>
+                <button
+                  type="button"
+                  className="btn-danger btn-sm"
+                  onClick={() => setJourney(journey.filter((_, j) => j !== i))}
+                  aria-label="Remove row"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            <textarea
+              className="field mt-2.5 min-h-[64px] resize-y"
               placeholder="Description"
               value={r.desc}
               onChange={(e) => setRow(i, { desc: e.target.value })}
             />
-            <div className="flex gap-1.5 max-sm:col-span-2 max-sm:justify-end">
-              <button type="button" className="btn-ghost btn-sm" onClick={() => moveRow(i, -1)} aria-label="Move up">
-                ↑
-              </button>
-              <button type="button" className="btn-ghost btn-sm" onClick={() => moveRow(i, 1)} aria-label="Move down">
-                ↓
-              </button>
-              <button
-                type="button"
-                className="btn-danger btn-sm"
-                onClick={() => setJourney(journey.filter((_, j) => j !== i))}
-                aria-label="Remove row"
-              >
-                ✕
-              </button>
-            </div>
           </div>
         ))}
         <button
