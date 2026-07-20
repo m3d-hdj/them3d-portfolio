@@ -52,10 +52,25 @@ export interface GeneralSettings {
 
 export type SocialsSettings = Record<string, string>
 
+export interface AboutSettings {
+  image_url: string
+  image_caption: string
+  paragraphs: string[]
+  pills: string[]
+}
+
+export interface JourneyItem {
+  year: string
+  title: string
+  desc: string
+}
+
 export interface SiteSettings {
   general: GeneralSettings
   socials: SocialsSettings
   stats: Stat[]
+  about: AboutSettings
+  journey: JourneyItem[]
 }
 
 /** Convert a YouTube / Vimeo page URL into an embeddable player URL. */
