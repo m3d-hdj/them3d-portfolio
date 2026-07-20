@@ -3,7 +3,7 @@ import { sb, type GeneralSettings, type SocialsSettings, type Stat } from '../li
 import { FALLBACK_SETTINGS } from '../lib/content'
 import type { Notify } from '../pages/Admin'
 
-const SOCIAL_KEYS = ['instagram', 'behance', 'youtube', 'tiktok', 'x', 'linkedin'] as const
+const SOCIAL_KEYS = ['instagram', 'behance', 'youtube', 'tiktok', 'x', 'linkedin', 'whatsapp'] as const
 
 export default function SettingsEditor({ notify }: { notify: Notify }) {
   const [general, setGeneral] = useState<GeneralSettings>(FALLBACK_SETTINGS.general)
@@ -72,11 +72,13 @@ export default function SettingsEditor({ notify }: { notify: Notify }) {
         <div className="grid gap-4 sm:grid-cols-2">
           {SOCIAL_KEYS.map((key) => (
             <div key={key}>
-              <label className="field-label">{key === 'x' ? 'X / Twitter' : key}</label>
+              <label className="field-label">{key === 'x' ? 'X / Twitter' : key === 'whatsapp' ? 'WhatsApp (number or link)' : key}</label>
               <input
                 className="field"
-                type="url"
-                placeholder={`https://${key === 'x' ? 'x.com' : key + '.com'}/yourhandle`}
+                type={key === 'whatsapp' ? 'text' : 'url'}
+                placeholder={
+                  key === 'whatsapp' ? '+213 555 12 34 56  or  https://wa.me/213555123456' : `https://${key === 'x' ? 'x.com' : key + '.com'}/yourhandle`
+                }
                 value={socials[key] ?? ''}
                 onChange={(e) => setSocials({ ...socials, [key]: e.target.value })}
               />
