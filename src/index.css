@@ -106,7 +106,11 @@
   box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.7);
   pointer-events: none;
   opacity: 0;
-  transition: scale 0.15s ease, opacity 0.25s ease;
+  transition: width 0.15s ease, height 0.15s ease, opacity 0.25s ease;
+}
+.cursor-dot.is-pressed {
+  width: 5px;
+  height: 5px;
 }
 .cursor-ring {
   position: fixed;
