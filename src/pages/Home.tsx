@@ -28,6 +28,9 @@ export default function Home() {
             if (row.key === 'stats' && Array.isArray(row.value)) next.stats = row.value as SiteSettings['stats']
             if (row.key === 'about') next.about = { ...prev.about, ...(row.value as object) } as SiteSettings['about']
             if (row.key === 'journey' && Array.isArray(row.value)) next.journey = row.value as SiteSettings['journey']
+            if (row.key === 'skills' && Array.isArray(row.value)) next.skills = row.value as SiteSettings['skills']
+            if (row.key === 'languages' && Array.isArray(row.value)) next.languages = row.value as SiteSettings['languages']
+            if (row.key === 'facts' && Array.isArray(row.value)) next.facts = row.value as SiteSettings['facts']
           }
           return next
         })
@@ -44,7 +47,7 @@ export default function Home() {
       <Stats stats={settings.stats} />
       <Disciplines />
       <Testimonials />
-      <Skills />
+      <Skills skills={settings.skills} languages={settings.languages} facts={settings.facts} />
       <Contact general={settings.general} socials={settings.socials} />
     </>
   )
