@@ -3,9 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  /* native smooth scrolling is replaced by Lenis on the public site */
   body {
     @apply bg-white font-body font-light text-ink antialiased;
   }
