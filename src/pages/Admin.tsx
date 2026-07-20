@@ -8,8 +8,9 @@ import ProjectsManager from '../admin/ProjectsManager'
 import MessagesInbox from '../admin/MessagesInbox'
 import SettingsEditor from '../admin/SettingsEditor'
 import TestimonialsManager from '../admin/TestimonialsManager'
+import AboutEditor from '../admin/AboutEditor'
 
-const TABS = ['Projects', 'Messages', 'Settings', 'Testimonials'] as const
+const TABS = ['Projects', 'About', 'Messages', 'Settings', 'Testimonials'] as const
 type Tab = (typeof TABS)[number]
 
 export interface Notify {
@@ -79,6 +80,7 @@ export default function Admin() {
           </div>
 
           {tab === 'Projects' && <ProjectsManager notify={notify} />}
+          {tab === 'About' && <AboutEditor notify={notify} />}
           {tab === 'Messages' && <MessagesInbox notify={notify} />}
           {tab === 'Settings' && <SettingsEditor notify={notify} />}
           {tab === 'Testimonials' && <TestimonialsManager notify={notify} />}
