@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// GitHub Pages serves this repo at /them3d-portfolio/
+// Netlify serves the site at the domain root and builds from source.
 export default defineConfig({
   plugins: [react()],
-  base: '/them3d-portfolio/',
+  base: '/',
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     emptyOutDir: true,
   },
 })
