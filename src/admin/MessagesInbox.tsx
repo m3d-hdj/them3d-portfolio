@@ -46,6 +46,20 @@ export default function MessagesInbox({ notify }: { notify: Notify }) {
               <div className="text-[0.74rem] font-medium uppercase tracking-[0.1em] text-muted">
                 {new Date(m.created_at).toLocaleString()}
               </div>
+              {(m.project_type || m.budget) && (
+                <div className="mt-1.5 flex flex-wrap gap-1.5">
+                  {m.project_type && (
+                    <span className="rounded-full bg-blue/10 px-2.5 py-0.5 text-[0.66rem] font-bold tracking-[0.1em] text-blue">
+                      {m.project_type.toUpperCase()}
+                    </span>
+                  )}
+                  {m.budget && (
+                    <span className="rounded-full bg-[#0E9F6E]/10 px-2.5 py-0.5 text-[0.66rem] font-bold tracking-[0.1em] text-[#0E9F6E]">
+                      {m.budget.toUpperCase()}
+                    </span>
+                  )}
+                </div>
+              )}
               <p className="mt-2 whitespace-pre-wrap text-[0.9rem] text-ink">{m.body}</p>
             </div>
             <div className="flex items-start gap-2">
