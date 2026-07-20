@@ -1,4 +1,4 @@
-import type { AboutSettings, JourneyItem, Project, SiteSettings, Testimonial } from './supabase'
+import type { AboutSettings, JourneyItem, LanguageItem, Project, SiteSettings, SkillItem, Testimonial } from './supabase'
 
 /**
  * Fallback content — shown until real rows exist in Supabase.
@@ -56,6 +56,28 @@ export const FALLBACK_JOURNEY: JourneyItem[] = [
   { year: 'NOW', title: 'Available worldwide', desc: 'Open for projects, collabs and long-term retainers.' },
 ]
 
+export const FALLBACK_SKILLS: SkillItem[] = [
+  { name: 'Premiere Pro', level: 95 },
+  { name: 'After Effects', level: 90 },
+  { name: 'Photoshop', level: 92 },
+  { name: 'Illustrator', level: 88 },
+  { name: 'DaVinci Resolve', level: 85 },
+  { name: 'Figma', level: 75 },
+]
+
+export const FALLBACK_LANGUAGES: LanguageItem[] = [
+  { name: 'Arabic', level: 'Native' },
+  { name: 'French', level: 'Fluent' },
+  { name: 'English', level: 'Fluent' },
+]
+
+export const FALLBACK_FACTS: string[] = [
+  'Based in Algeria — working with clients worldwide',
+  'Editing + design under one roof: one consistent visual voice',
+  'Fast turnarounds without cutting corners',
+  'Available for one-off projects and monthly retainers',
+]
+
 export const FALLBACK_SETTINGS: SiteSettings = {
   general: { email: 'hello@them3d.com', location: 'DZ · Working worldwide', available: true },
   socials: { instagram: '', behance: '', youtube: '', tiktok: '', x: '', linkedin: '' },
@@ -67,6 +89,9 @@ export const FALLBACK_SETTINGS: SiteSettings = {
   ],
   about: FALLBACK_ABOUT,
   journey: FALLBACK_JOURNEY,
+  skills: FALLBACK_SKILLS,
+  languages: FALLBACK_LANGUAGES,
+  facts: FALLBACK_FACTS,
 }
 
 export const DISCIPLINES = [
@@ -76,21 +101,6 @@ export const DISCIPLINES = [
   { name: 'Brand Identity', count: '15+ brands', tools: 'Illustrator · Photoshop', deliverables: 'Logos, brand guidelines, stationery, launch kits' },
   { name: 'Social Media Design', count: '200+ designs', tools: 'Photoshop · Figma', deliverables: 'Covers, carousels, thumbnails, story templates' },
   { name: 'Print & Posters', count: '30+ pieces', tools: 'Illustrator · InDesign', deliverables: 'Gig posters, flyers, packaging, editorial layouts' },
-]
-
-export const SKILLS = [
-  { name: 'Premiere Pro', level: 95 },
-  { name: 'After Effects', level: 90 },
-  { name: 'Photoshop', level: 92 },
-  { name: 'Illustrator', level: 88 },
-  { name: 'DaVinci Resolve', level: 85 },
-  { name: 'Figma', level: 75 },
-]
-
-export const LANGUAGES = [
-  { name: 'Arabic', level: 'Native' },
-  { name: 'French', level: 'Fluent' },
-  { name: 'English', level: 'Fluent' },
 ]
 
 export const MARQUEE_ITEMS = [
