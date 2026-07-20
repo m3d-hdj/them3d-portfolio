@@ -1,4 +1,4 @@
-import type { Project, SiteSettings, Testimonial } from './supabase'
+import type { AboutSettings, JourneyItem, Project, SiteSettings, Testimonial } from './supabase'
 
 /**
  * Fallback content — shown until real rows exist in Supabase.
@@ -22,8 +22,6 @@ const IMG = {
     'https://pub.hyperagent.com/api/published/pbf01KXYT86B6_GJNVBG9T7WM4SQVC/bf71ac48-0ec3-4e42-9184-14aa03a5050d.png',
 }
 
-export const WORKSPACE_IMG = IMG.workspace
-
 export const FALLBACK_PROJECTS: Project[] = [
   { id: 'demo-1', title: 'Midnight Set', category: 'Music video', year: '2026', video_kind: 'none', video_url: null, thumb_url: IMG.musicVideo, sort: 0 },
   { id: 'demo-2', title: 'Onyx Rebrand', category: 'Brand identity', year: '2025', video_kind: 'none', video_url: null, thumb_url: IMG.brand, sort: 1 },
@@ -39,6 +37,25 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
   { id: 't-3', quote: 'The identity he designed became the face of our whole rebrand — from the logo to every single post.', author: 'S. Farid', role: 'Founder — Startup', sort: 2 },
 ]
 
+export const FALLBACK_ABOUT: AboutSettings = {
+  image_url: IMG.workspace,
+  image_caption: 'The studio — where it happens',
+  paragraphs: [
+    "**I'm TheM3d — a video editor and graphic designer** obsessed with rhythm, contrast and detail. Whether it's a music video, a brand launch or a 15-second reel, I treat every frame like it has a job to do.",
+    'My edge is working **both sides of the craft**: the motion side (editing, grading, motion graphics) and the still side (identity, posters, social design). One brain, one consistent visual voice across everything a brand puts out.',
+    'Clients come to me for cuts that hold attention — and stay for design that makes them recognizable.',
+  ],
+  pills: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Photoshop', 'Illustrator'],
+}
+
+export const FALLBACK_JOURNEY: JourneyItem[] = [
+  { year: '2019', title: 'First cut', desc: 'Started editing montages and discovered the rhythm of a good cut.' },
+  { year: '2021', title: 'Going freelance', desc: 'First paying clients — content creators and local brands.' },
+  { year: '2023', title: 'Design unlocked', desc: 'Added brand identity and poster design to the toolkit.' },
+  { year: '2024', title: 'Studio mode', desc: 'Full-time freelance: campaigns, music videos, motion design.' },
+  { year: 'NOW', title: 'Available worldwide', desc: 'Open for projects, collabs and long-term retainers.' },
+]
+
 export const FALLBACK_SETTINGS: SiteSettings = {
   general: { email: 'hello@them3d.com', location: 'DZ · Working worldwide', available: true },
   socials: { instagram: '', behance: '', youtube: '', tiktok: '', x: '', linkedin: '' },
@@ -48,15 +65,9 @@ export const FALLBACK_SETTINGS: SiteSettings = {
     { value: 30, suffix: '+', label: 'Clients & collabs' },
     { value: 5, suffix: '+', label: 'Years cutting & creating' },
   ],
+  about: FALLBACK_ABOUT,
+  journey: FALLBACK_JOURNEY,
 }
-
-export const JOURNEY = [
-  { year: '2019', title: 'First cut', desc: 'Started editing montages and discovered the rhythm of a good cut.' },
-  { year: '2021', title: 'Going freelance', desc: 'First paying clients — content creators and local brands.' },
-  { year: '2023', title: 'Design unlocked', desc: 'Added brand identity and poster design to the toolkit.' },
-  { year: '2024', title: 'Studio mode', desc: 'Full-time freelance: campaigns, music videos, motion design.' },
-  { year: 'NOW', title: 'Available worldwide', desc: 'Open for projects, collabs and long-term retainers.' },
-]
 
 export const DISCIPLINES = [
   { name: 'Video Editing', count: '120+ projects', tools: 'Premiere Pro · DaVinci Resolve', deliverables: 'Music videos, YouTube, ads, reels, event recaps' },
