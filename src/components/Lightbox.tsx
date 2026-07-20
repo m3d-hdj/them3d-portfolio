@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { toEmbedUrl, type Project } from '../lib/supabase'
+import { getLenis } from '../lib/smoothScroll'
 
 interface LightboxProps {
   project: Project | null
@@ -13,9 +14,11 @@ export default function Lightbox({ project, onClose }: LightboxProps) {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
+    getLenis()?.stop()
     return () => {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      getLenis()?.start()
     }
   }, [project, onClose])
 
