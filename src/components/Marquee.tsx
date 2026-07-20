@@ -4,62 +4,93 @@ interface MarqueeItem {
   label: string
   icon: IconKind
   letters?: string
-  bg?: string
-  fg?: string
+  gradFrom?: string
+  gradTo?: string
 }
 
 /** Services paired with the tool that powers them. */
 const ITEMS: MarqueeItem[] = [
-  { label: 'Video Editing', icon: 'letters', letters: 'Pr', bg: '#00005B', fg: '#9999FF' },
-  { label: 'Motion Graphics', icon: 'letters', letters: 'Ae', bg: '#00005B', fg: '#9999FF' },
+  { label: 'Video Editing', icon: 'letters', letters: 'Pr', gradFrom: '#AEB0FF', gradTo: '#5A54F0' },
+  { label: 'Motion Graphics', icon: 'letters', letters: 'Ae', gradFrom: '#C39BFF', gradTo: '#7B2BEA' },
   { label: 'Color Grading', icon: 'davinci' },
-  { label: 'Brand Identity', icon: 'letters', letters: 'Ai', bg: '#330000', fg: '#FF9A00' },
+  { label: 'Brand Identity', icon: 'letters', letters: 'Ai', gradFrom: '#FFC24D', gradTo: '#FF7A00' },
   { label: 'Social Content', icon: 'figma' },
-  { label: 'Poster Design', icon: 'letters', letters: 'Ps', bg: '#001E36', fg: '#31A8FF' },
+  { label: 'Poster Design', icon: 'letters', letters: 'Ps', gradFrom: '#5AC8FF', gradTo: '#0B63D8' },
 ]
 
-function ToolIcon({ item }: { item: MarqueeItem }) {
-  const tile =
-    'mr-[0.4em] inline-flex h-[1.18em] w-[1.18em] shrink-0 items-center justify-center rounded-[22%] align-[-0.18em] font-body font-bold shadow-[0_2px_8px_rgba(0,0,0,.25)]'
+const TILE =
+  'relative mr-[0.45em] inline-flex h-[1.6em] w-[1.6em] shrink-0 items-center justify-center overflow-hidden rounded-[24%] align-[-0.38em] font-body font-bold'
 
+const TILE_SHADOW =
+  '0 5px 14px rgba(0,0,0,.38), inset 0 1.5px 1.5px rgba(255,255,255,.5), inset 0 -2.5px 4px rgba(0,0,0,.28)'
+
+/** Glossy top-half sheen for the 3D look. */
+function Gloss() {
+  return (
+    <span
+      className="pointer-events-none absolute inset-x-0 top-0 h-1/2"
+      style={{ background: 'linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,0))' }}
+    />
+  )
+}
+
+function ToolIcon({ item }: { item: MarqueeItem }) {
   if (item.icon === 'figma') {
     return (
-      <span className={tile} style={{ background: '#1E1E1E' }} aria-hidden="true">
-        <svg viewBox="0 0 38 57" style={{ height: '58%' }}>
+      <span
+        className={TILE}
+        style={{ background: 'linear-gradient(145deg,#FFFFFF,#E2E5F3)', boxShadow: TILE_SHADOW }}
+        aria-hidden="true"
+      >
+        <svg viewBox="0 0 38 57" style={{ height: '58%', filter: 'drop-shadow(0 1px 1.5px rgba(0,0,0,.25))' }}>
           <path fill="#1abcfe" d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z" />
           <path fill="#0acf83" d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z" />
           <path fill="#ff7262" d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" />
           <path fill="#f24e1e" d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" />
           <path fill="#a259ff" d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" />
         </svg>
+        <Gloss />
       </span>
     )
   }
 
   if (item.icon === 'davinci') {
     return (
-      <span className={tile} style={{ background: '#1A1A1A' }} aria-hidden="true">
+      <span
+        className={TILE}
+        style={{ background: 'linear-gradient(145deg,#FDFDFF,#D6DAEA)', boxShadow: TILE_SHADOW }}
+        aria-hidden="true"
+      >
         <span
           className="flex items-center justify-center rounded-full"
           style={{
-            height: '68%',
-            width: '68%',
+            height: '66%',
+            width: '66%',
             background: 'conic-gradient(#ff6a00,#ffd500,#7cd41f,#00c8ff,#7a5cff,#ff2fa0,#ff6a00)',
+            boxShadow: '0 1px 3px rgba(0,0,0,.3)',
           }}
         >
-          <span className="rounded-full" style={{ height: '55%', width: '55%', background: '#1A1A1A' }} />
+          <span className="rounded-full" style={{ height: '52%', width: '52%', background: '#FDFDFF' }} />
         </span>
+        <Gloss />
       </span>
     )
   }
 
   return (
     <span
-      className={tile}
-      style={{ background: item.bg, color: item.fg, fontSize: '0.52em', WebkitTextStroke: '0' }}
+      className={TILE}
+      style={{
+        background: `linear-gradient(145deg, ${item.gradFrom}, ${item.gradTo})`,
+        boxShadow: TILE_SHADOW,
+        WebkitTextStroke: '0',
+      }}
       aria-hidden="true"
     >
-      {item.letters}
+      <span style={{ fontSize: '0.6em', color: '#fff', textShadow: '0 1.5px 2.5px rgba(0,0,0,.4)' }}>
+        {item.letters}
+      </span>
+      <Gloss />
     </span>
   )
 }
