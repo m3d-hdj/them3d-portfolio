@@ -60,11 +60,6 @@ export default function Admin() {
         <Login notify={notify} />
       ) : (
         <div className="mx-auto max-w-[980px] px-5 pb-20 pt-8">
-          <div className="mb-5 rounded-lg border border-blue/25 bg-blue/5 px-4.5 py-3.5 text-[0.84rem]" style={{ padding: '14px 18px' }}>
-            🔒 <b className="text-blue">Security reminder:</b> in Supabase → Authentication → Sign In / Providers →
-            Email, keep <b>"Allow new users to sign up"</b> turned <b>OFF</b>.
-          </div>
-
           <div className="mb-6 flex flex-wrap gap-2">
             {TABS.map((t) => (
               <button
