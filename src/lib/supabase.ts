@@ -65,12 +65,25 @@ export interface JourneyItem {
   desc: string
 }
 
+export interface SkillItem {
+  name: string
+  level: number
+}
+
+export interface LanguageItem {
+  name: string
+  level: string
+}
+
 export interface SiteSettings {
   general: GeneralSettings
   socials: SocialsSettings
   stats: Stat[]
   about: AboutSettings
   journey: JourneyItem[]
+  skills: SkillItem[]
+  languages: LanguageItem[]
+  facts: string[]
 }
 
 /** Convert a YouTube / Vimeo page URL into an embeddable player URL. */
