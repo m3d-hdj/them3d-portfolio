@@ -34,6 +34,8 @@ export interface ContactMessage {
   name: string
   email: string
   body: string
+  project_type?: string | null
+  budget?: string | null
   notified: boolean
   created_at: string
 }
