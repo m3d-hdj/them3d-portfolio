@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-white font-body font-light text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-blue text-white;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f0f2fb;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c9d2f2;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0045df;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto max-w-[1280px] px-5 sm:px-10 lg:px-16;
+  }
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2.5 rounded border border-blue px-7 py-3.5 font-body text-[0.8rem] font-semibold uppercase tracking-[0.14em] transition-all duration-300;
+  }
+  .btn-solid {
+    @apply btn bg-blue text-white shadow-[0_10px_24px_-10px_rgba(0,69,223,.5)] hover:-translate-y-0.5 hover:border-blue-deep hover:bg-blue-deep;
+  }
+  .btn-ghost {
+    @apply btn border-[#C9D2F2] bg-transparent text-ink hover:border-blue hover:text-blue;
+  }
+  .btn-inverse {
+    @apply btn border-white bg-white text-blue shadow-[0_14px_30px_-12px_rgba(0,0,0,.35)] hover:-translate-y-0.5 hover:bg-transparent hover:text-white;
+  }
+  .btn-danger {
+    @apply btn border-[#F3C4C4] bg-transparent text-[#E02D2D] hover:border-[#E02D2D] hover:bg-[#E02D2D] hover:text-white;
+  }
+  .btn-sm {
+    @apply px-3.5 py-2 text-[0.68rem];
+  }
+  .sec-label {
+    @apply mb-5 flex items-center gap-3 text-[0.74rem] font-semibold uppercase tracking-[0.26em] text-peri before:block before:h-2.5 before:w-2.5 before:bg-blue before:content-[''];
+  }
+  .sec-title {
+    @apply mb-4 font-disp text-[clamp(2.2rem,6vw,4.4rem)] uppercase leading-[0.98] tracking-tight;
+  }
+  .grad-text-bright {
+    background: linear-gradient(90deg, #0030cc, #2e6bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grad-text-deep {
+    background: linear-gradient(135deg, #241890, #18189c 45%, #0c0cb4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grad-block {
+    background: linear-gradient(120deg, #18189c, #0045df);
+  }
+  .field {
+    @apply w-full rounded-md border border-line bg-[#FAFBFF] px-3.5 py-3 font-body text-[0.95rem] text-ink transition-colors focus:border-blue focus:outline-none;
+  }
+  .field-label {
+    @apply mb-1.5 mt-4 block text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-peri;
+  }
+  .admin-card {
+    @apply rounded-[10px] border border-line bg-white p-6 shadow-card sm:p-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+@keyframes dotpulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes dropline {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  56% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+@keyframes spinslow {
+  to {
+    transform: rotate(360deg);
+  }
+}
