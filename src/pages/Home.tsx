@@ -26,6 +26,8 @@ export default function Home() {
             if (row.key === 'general') next.general = { ...prev.general, ...(row.value as object) } as SiteSettings['general']
             if (row.key === 'socials') next.socials = { ...prev.socials, ...(row.value as object) }
             if (row.key === 'stats' && Array.isArray(row.value)) next.stats = row.value as SiteSettings['stats']
+            if (row.key === 'about') next.about = { ...prev.about, ...(row.value as object) } as SiteSettings['about']
+            if (row.key === 'journey' && Array.isArray(row.value)) next.journey = row.value as SiteSettings['journey']
           }
           return next
         })
@@ -37,7 +39,7 @@ export default function Home() {
       <Nav />
       <Hero general={settings.general} />
       <Marquee />
-      <About />
+      <About about={settings.about} journey={settings.journey} available={settings.general.available} />
       <Work />
       <Stats stats={settings.stats} />
       <Disciplines />
